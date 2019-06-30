@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "name": "Octane",
+  "version": "0.0.1",
+  "description": "Scraping for predetermined any elements.",
+  "browser_action": {
+    "default_popup": "pages/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content_scripts/scrap.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": ["tabs"]
+}
