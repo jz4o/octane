@@ -1,9 +1,9 @@
 // Saves options to chrome.storage
 function save_options() {
-  var matching_url = document.getElementById('matching_url').value;
+  var matchingUrl = document.getElementById('matching_url').value;
   var xpath = document.getElementById('xpath').value;
   chrome.storage.local.set({
-    matching_url: matching_url,
+    matchingUrl: matchingUrl,
     xpath: xpath,
   }, function() {
     // Update status to let user know options were saved.
@@ -20,10 +20,10 @@ function save_options() {
 function restore_options() {
   // Use default value.
   chrome.storage.local.get({
-    matching_url: '',
+    matchingUrl: '',
     xpath: ''
   }, function(items) {
-    document.getElementById('matching_url').value = items.matching_url;
+    document.getElementById('matching_url').value = items.matchingUrl;
     document.getElementById('xpath').value = items.xpath;
   });
 }
