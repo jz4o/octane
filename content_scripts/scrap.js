@@ -9,5 +9,16 @@ chrome.storage.local.get(setting, function(items) {
 });
 
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
-  sendResponse(setting['matching_url'] + "\n" + setting['xpath']);
+  if ((new RegExp(setting['matching_url'])).test(document.URL)) {
+    if (result = document.getTextByXPath(setting['xpath'])) {
+      return sendResponse(result);
+    }
+  }
+
+  sendResponse('scraping failed...');
 });
+
+document.getTextByXPath = function(xpath) {
+  var element = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+  return element && element.textContent;
+}
